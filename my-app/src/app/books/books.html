@@ -1,0 +1,30 @@
+<p>exercise 39 - books works!</p>
+{{errMessage}}
+<a class="New_book" routerLink="../ex43">New Book</a>
+<table border="1">
+    <tr>
+        <th>BookId</th>
+        <th>BookName</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th colspan="3">Action</th>
+    </tr>
+    <tbody>
+        <tr *ngFor= "let book of books">
+            <td>{{book.BookId}}</td>
+            <td>{{book.BookName}}</td>
+            <td>{{book.Price}} </td>
+            <td>
+                <img src="http://localhost:3000/static/images/{{book.Image}}" width="100px" height="100px"
+                    (click)="show_detail(book.BookId)"
+                    style="cursor:pointer;">
+            </td>
+            <td>
+                <a style="cursor:pointer" (click)="show_update(book.BookId)">Edit</a>
+            </td>
+            <td>
+                <a style="cursor:pointer" (click)="request_delete(book.BookId)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

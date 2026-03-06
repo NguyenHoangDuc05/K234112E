@@ -1,16 +1,128 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing-module';
+import { AppRoutingModule, RoutingComponent } from './app-routing-module';
 import { App } from './app';
+import { Home } from './home/home';
+import { About } from './about/about';
+import { Contact } from './contact/contact';
+import { Exercise3 } from './exercise3/exercise3';
+import { Mybinding } from './mybinding/mybinding';
+import { Ptb1 } from './ptb1/ptb1';
+import { CourseGpaComponent } from './coursegpa/coursegpa';
+import { Ptb2 } from './ptb2/ptb2';
+import { Learndirective } from './learndirective/learndirective';
+import { Exercise10 } from './exercise10/exercise10';
+import { Listproduct1 } from './listproduct1/listproduct1';
+import { Listproduct2 } from './listproduct2/listproduct2';
+import { Customer } from './customer/customer';
+import { Listproduct3 } from './listproduct3/listproduct3';
+import { Exercise18Component } from './exercise18/exercise18';
+import { Pagenotfound } from './pagenotfound/pagenotfound';
+import { Listcustomer } from './listcustomer/listcustomer';
+import { Customerdetail } from './customerdetail/customerdetail';
+import { Listcustomerservicer } from './myservices/listcustomerservicer/listcustomerservicer';
+import { ListCustomerHttpService } from './myservices/list-customer-http-service/list-customer-http-service';
+import { Exercise13 } from './exercise13/exercise13';
+import { Exercise14 } from './exercise14/exercise14';
+import { Exercise19 } from './exercise19/exercise19';
+import { ServiceProductImageEvent } from './exercise13/service-product-image-event/service-product-image-event';
+import { ServiceProductImageEventDetail } from './exercise13/service-product-image-event-detail/service-product-image-event-detail';
+import { ProductComponent } from './exercise19/product-component/product-component';
+import { ListProductComponent } from './exercise19/list-product-component/list-product-component';
+import { ServiceProductComponent } from './exercise19/service-product-component/service-product-component';
+import { Form } from './form/form';
+import { FakeProductComponent } from './fake-product-component/fake-product-component';
+import { ReactiveForms } from './reactive-forms/reactive-forms';
+import { Books } from './books/books';
+import { BookDetail } from './book-detail/book-detail';
+import { FakeProductVersion2 } from './fake-product-component/fake-product-version-2/fake-product-version-2';
+import { BookNewComponent } from './book-new-component/book-new-component';
+import { Exercise50 } from './exercise50/exercise50';
+import { Ex50BookinfoNewComponent } from './exercise50/ex50-bookinfo-new-component/ex50-bookinfo-new-component';
+import { Ex50BookinfoDetailComponent } from './exercise50/ex50-bookinfo-detail-component/ex50-bookinfo-detail-component';
+import { BookUpdateComponent } from './book-update-component/book-update-component';
+import { BookDeleteComponent } from './book-delete-component/book-delete-component';
+import { Fashion } from './fashion/fashion';
+import { FashionDetailComponent } from './fashion-detail-component/fashion-detail-component';
+import { Login } from './login/login';
+import { Register } from './register/register';
+import { Exercise63 } from './exercise63/exercise63';
+import { Cart } from './exercise63/cart/cart';
+import { Exercise58 } from './exercise58/exercise58';
+import { Ex58Form } from './exercise58/ex58-form/ex58-form';
+import { Ex58Detail } from './exercise58/ex58-detail/ex58-detail';
+import { Ex58Client } from './exercise58/ex58-client/ex58-client';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    RoutingComponent,
+    Home,
+    About,
+    Contact,
+    Exercise3,
+    Ptb1,
+    CourseGpaComponent,
+    Ptb2,
+    Learndirective,
+    Exercise10,
+    Listproduct1,
+    Listproduct2,
+    Customer,
+    Listproduct3,
+    Exercise18Component,
+    Pagenotfound,
+    Listcustomer,
+    Customerdetail,
+    Listcustomerservicer,
+    ListCustomerHttpService,
+    Exercise13,
+    Exercise14,
+    Exercise19,
+    ServiceProductImageEvent,
+    ServiceProductImageEventDetail,
+    ProductComponent,
+    ListProductComponent,
+    ServiceProductComponent,
+    Form,
+    FakeProductComponent,
+    ReactiveForms,
+    Books,
+    BookDetail,
+    FakeProductVersion2,
+    BookNewComponent,
+    Exercise50,
+    Ex50BookinfoNewComponent,
+    Ex50BookinfoDetailComponent,
+    BookUpdateComponent,
+    BookDeleteComponent,
+    Fashion,
+    FashionDetailComponent,
+    Login,
+    Register,
+    Exercise63,
+    Cart,
+    Exercise58,
+    Ex58Form,
+    Ex58Detail,
+    Ex58Client
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    FormsModule,
+    AppRoutingModule,
+    Mybinding,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
