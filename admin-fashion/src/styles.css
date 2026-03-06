@@ -1,0 +1,8 @@
+/* Fix icon bị vỡ thành ô vuông (Font Awesome được load qua angular.json) */
+.fa {
+  font-family: 'FontAwesome' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,152 @@
+/* ========================================
+   🎩 Fashion Detail View — Brown & Navy
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --cream: #f5efe6;
+    --brown-light: #e8d5b7;
+    --brown: #a0724a;
+    --brown-dark: #6b4423;
+    --brown-deep: #3e2210;
+    --navy-light: #d6e4f0;
+    --navy: #2c4a6e;
+    --navy-dark: #1a2f4a;
+    --navy-deep: #0d1b2e;
+    --gold: #c9a84c;
+    --gold-light: #f0dfa0;
+    --shadow-brown: rgba(62, 34, 16, 0.18);
+    --shadow-navy: rgba(28, 47, 74, 0.15);
+    --text-dark: #2a1a0a;
+    --text-mid: #6b4a2a;
+    --border-r: 8px;
+}
+
+app-fashion-detail .detail-container {
+    background-color: var(--cream);
+    min-height: 100vh;
+    padding: 48px 32px;
+    font-family: 'Lato', sans-serif;
+    color: var(--text-dark);
+}
+
+app-fashion-detail .btn-back {
+    background: var(--navy-light);
+    color: var(--navy-dark);
+    border: 1px solid var(--navy);
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0 var(--navy-dark);
+}
+
+app-fashion-detail .btn-back:hover {
+    background: var(--navy);
+    color: #fff;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--navy-dark);
+}
+
+app-fashion-detail .error {
+    background: #fdf3e7;
+    border-left: 4px solid var(--brown);
+    color: var(--brown-dark);
+    padding: 12px 20px;
+    border-radius: var(--border-r);
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+app-fashion-detail .card {
+    background: #fff;
+    border-radius: var(--border-r);
+    box-shadow: 0 4px 20px var(--shadow-brown);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+app-fashion-detail .card-header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    padding: 30px;
+    text-align: center;
+    color: var(--gold-light);
+    border-bottom: 4px solid var(--gold);
+}
+
+app-fashion-detail .style-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--brown-deep);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+app-fashion-detail h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+app-fashion-detail .card-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+app-fashion-detail .image-section img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--border-r);
+    box-shadow: 0 4px 16px var(--shadow-brown);
+    border: 4px solid var(--brown-light);
+}
+
+app-fashion-detail .content-section {
+    background: #fdfaf6;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--brown-light);
+}
+
+app-fashion-detail .wysiwyg-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Base styling for WYSIWYG tags */
+app-fashion-detail .wysiwyg-content p {
+    margin-bottom: 1em;
+}
+
+app-fashion-detail .wysiwyg-content img {
+    max-width: 100%;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+app-fashion-detail .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--brown);
+    padding: 40px;
+}
