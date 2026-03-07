@@ -29,6 +29,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register';
 import { Cart } from './cart/cart';
 import { Exercise63 } from './exercise63/exercise63';
+import { Exercise50 } from './exercise50/exercise50';
 
 const routes: Routes = [
   { path: 'login', component: Login },
@@ -67,7 +68,8 @@ const routes: Routes = [
       { path: 'ex53', component: Fashion },
       { path: 'fashions/:id', component: FashionDetail },
       { path: 'ex63', component: Exercise63 },
-      { path: 'cart', component: Cart }
+      { path: 'cart', component: Cart },
+      { path: 'ex50', component: Exercise50 },
     ]
   },
   { path: '**', redirectTo: '/login' } // fallback

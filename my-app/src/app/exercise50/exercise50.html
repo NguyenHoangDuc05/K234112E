@@ -1,0 +1,240 @@
+<div class="container mt-4">
+
+    <!-- Toast thông báo -->
+    <div *ngIf="message" class="alert mt-2"
+        [ngClass]="messageType === 'success' ? 'alert-success' : 'alert-danger'">
+        {{ message }}
+    </div>
+
+    <!-- ===== LIST VIEW ===== -->
+    <div *ngIf="viewMode === 'list'">
+        <h2 class="mb-3 font-weight-normal text-secondary">QUẢN LÝ THÔNG TIN SÁCH</h2>
+        <a href="javascript:void(0)" (click)="showAdd()" class="text-primary d-block mb-3">Tạo Mới</a>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" style="font-size: 14px;">
+                <thead class="table-light">
+                    <tr>
+                        <th>Tên Sách</th>
+                        <th>Giá Bán</th>
+                        <th>Mô Tả</th>
+                        <th>Ảnh Bìa</th>
+                        <th>Ngày Cập Nhật</th>
+                        <th>Tồn Kho</th>
+                        <th>MaCD</th>
+                        <th>MaNXB</th>
+                        <th class="text-center" style="min-width: 180px;">Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let b of books">
+                        <td style="width: 12%; font-weight: 600;">{{b.Tensach}}</td>
+                        <td style="white-space:nowrap">{{b.Giaban | number:'1.0-0'}} ₫</td>
+                        <td style="width: 35%">
+                            <div style="font-size: 12px; color: #64748b; line-height:1.5">{{b.Mota}}</div>
+                        </td>
+                        <td style="text-align:center">
+                            <ng-container *ngIf="b.Anhbia; else noImg">
+                                <img [src]="'http://localhost:3000/static' + b.Anhbia"
+                                    alt="{{b.Tensach}}"
+                                    style="width:50px; height:65px; object-fit:cover; border-radius:2px; border:2px solid #0a1628;"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'" />
+                                <span style="display:none; font-size:11px; color:#aaa">{{b.Anhbia}}</span>
+                            </ng-container>
+                            <ng-template #noImg>
+                                <span style="color:#cbd5e1; font-size:11px; font-style:italic">Chưa có ảnh</span>
+                            </ng-template>
+                        </td>
+                        <td style="white-space:nowrap; font-size:12px">{{b.Ngaycapnhat}}</td>
+                        <td style="text-align:center; font-weight:600">{{b.Soluongton}}</td>
+                        <td style="text-align:center">{{b.MaCD}}</td>
+                        <td style="text-align:center">{{b.MaNXB}}</td>
+                        <td class="text-nowrap text-center action-cell">
+                            <a href="javascript:void(0)" (click)="showEdit(b)" class="btn-action edit">Sửa</a>
+                            <a href="javascript:void(0)" (click)="showDetails(b)" class="btn-action details">Chi Tiết</a>
+                            <a href="javascript:void(0)" (click)="deleteBook(b._id!)" class="btn-action delete">Xóa</a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="books.length === 0">
+                        <td colspan="9" class="text-center text-muted py-3">
+                            Chưa có dữ liệu sách nào
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== ADD VIEW ===== -->
+    <div *ngIf="viewMode === 'add'">
+        <h2 class="mb-3 font-weight-normal text-secondary">Thêm Sách Mới</h2>
+        <form (ngSubmit)="saveAdd()">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Tên Sách *</label>
+                    <input class="form-control" name="Tensach" [(ngModel)]="formBook.Tensach" required
+                        placeholder="Nhập tên sách...">
+                </div>
+                <div class="col-md-6">
+                    <label>Giá Bán (₫) *</label>
+                    <input type="number" class="form-control" name="Giaban"
+                        [(ngModel)]="formBook.Giaban" required min="0" placeholder="0">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Mô Tả</label>
+                <textarea class="form-control" name="Mota" [(ngModel)]="formBook.Mota"
+                    rows="4" placeholder="Nhập mô tả nội dung sách..."></textarea>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Ảnh Bìa <span style="font-size:0.6rem; color:#64748b; text-transform:none; letter-spacing:0">(vd: /images/tenfile.png)</span></label>
+                    <input class="form-control" name="Anhbia" [(ngModel)]="formBook.Anhbia"
+                        placeholder="/images/tenfile.png">
+                    <div *ngIf="formBook.Anhbia" class="img-preview-wrap">
+                        <img [src]="'http://localhost:3000/static' + formBook.Anhbia"
+                            onerror="this.style.display='none'" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Ngày Cập Nhật <span style="font-size:0.6rem; color:#64748b; text-transform:none; letter-spacing:0">(để trống = tự động)</span></label>
+                    <input class="form-control" name="Ngaycapnhat" [(ngModel)]="formBook.Ngaycapnhat"
+                        placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Số Lượng Tồn</label>
+                    <input type="number" class="form-control" name="Soluongton"
+                        [(ngModel)]="formBook.Soluongton" min="0" placeholder="0">
+                </div>
+                <div class="col-md-4">
+                    <label>Mã CD</label>
+                    <input type="number" class="form-control" name="MaCD"
+                        [(ngModel)]="formBook.MaCD" min="0" placeholder="0">
+                </div>
+                <div class="col-md-4">
+                    <label>Mã NXB</label>
+                    <input type="number" class="form-control" name="MaNXB"
+                        [(ngModel)]="formBook.MaNXB" min="0" placeholder="0">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Lưu Sách</button>
+                <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Hủy</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== EDIT VIEW ===== -->
+    <div *ngIf="viewMode === 'edit'">
+        <h2 class="mb-3 font-weight-normal text-secondary">Chỉnh Sửa Sách</h2>
+        <form (ngSubmit)="saveEdit()">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Tên Sách *</label>
+                    <input class="form-control" name="Tensach" [(ngModel)]="formBook.Tensach" required>
+                </div>
+                <div class="col-md-6">
+                    <label>Giá Bán (₫) *</label>
+                    <input type="number" class="form-control" name="Giaban"
+                        [(ngModel)]="formBook.Giaban" required min="0">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Mô Tả</label>
+                <textarea class="form-control" name="Mota" [(ngModel)]="formBook.Mota" rows="4"></textarea>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Ảnh Bìa</label>
+                    <input class="form-control" name="Anhbia" [(ngModel)]="formBook.Anhbia">
+                    <div *ngIf="formBook.Anhbia" class="img-preview-wrap">
+                        <img [src]="'http://localhost:3000/static' + formBook.Anhbia"
+                            onerror="this.style.display='none'" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Ngày Cập Nhật</label>
+                    <input class="form-control" name="Ngaycapnhat" [(ngModel)]="formBook.Ngaycapnhat">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Số Lượng Tồn</label>
+                    <input type="number" class="form-control" name="Soluongton"
+                        [(ngModel)]="formBook.Soluongton" min="0">
+                </div>
+                <div class="col-md-4">
+                    <label>Mã CD</label>
+                    <input type="number" class="form-control" name="MaCD"
+                        [(ngModel)]="formBook.MaCD" min="0">
+                </div>
+                <div class="col-md-4">
+                    <label>Mã NXB</label>
+                    <input type="number" class="form-control" name="MaNXB"
+                        [(ngModel)]="formBook.MaNXB" min="0">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Hủy</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== DETAILS VIEW ===== -->
+    <div *ngIf="viewMode === 'details'">
+        <h2 class="mb-3 font-weight-normal text-secondary">Chi Tiết Sách</h2>
+        <table class="table table-bordered mt-3" style="max-width: 640px;">
+            <tr>
+                <th style="width: 32%">Tên Sách</th>
+                <td>{{selectedBook?.Tensach}}</td>
+            </tr>
+            <tr>
+                <th>Giá Bán</th>
+                <td><strong style="color:#1a3a6b">{{selectedBook?.Giaban | number:'1.0-0'}} ₫</strong></td>
+            </tr>
+            <tr>
+                <th>Mô Tả</th>
+                <td style="line-height:1.6; font-size:0.88rem">{{selectedBook?.Mota}}</td>
+            </tr>
+            <tr>
+                <th>Ảnh Bìa</th>
+                <td>
+                    <span *ngIf="selectedBook?.Anhbia" style="font-size:0.78rem; color:#64748b; display:block; margin-bottom:8px">
+                        {{selectedBook?.Anhbia}}
+                    </span>
+                    <ng-container *ngIf="selectedBook?.Anhbia">
+                        <img *ngIf="selectedBook?.Anhbia?.startsWith('http')"
+                            [src]="selectedBook?.Anhbia" alt="Ảnh bìa"
+                            class="detail-img" />
+                        <img *ngIf="!selectedBook?.Anhbia?.startsWith('http')"
+                            [src]="'http://localhost:3000/static' + selectedBook?.Anhbia"
+                            alt="Ảnh bìa" class="detail-img"
+                            onerror="this.style.display='none'" />
+                    </ng-container>
+                </td>
+            </tr>
+            <tr>
+                <th>Ngày Cập Nhật</th>
+                <td>{{selectedBook?.Ngaycapnhat}}</td>
+            </tr>
+            <tr>
+                <th>Số Lượng Tồn</th>
+                <td><span class="stock-badge">{{selectedBook?.Soluongton}}</span></td>
+            </tr>
+            <tr>
+                <th>Mã CD</th>
+                <td>{{selectedBook?.MaCD}}</td>
+            </tr>
+            <tr>
+                <th>Mã NXB</th>
+                <td>{{selectedBook?.MaNXB}}</td>
+            </tr>
+        </table>
+        <button class="btn btn-secondary" (click)="goBack()">← Quay Lại</button>
+        <button class="btn btn-primary ms-2" (click)="showEdit(selectedBook!)">Chỉnh Sửa</button>
+    </div>
+
+</div>

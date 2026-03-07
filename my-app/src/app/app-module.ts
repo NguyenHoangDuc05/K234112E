@@ -49,6 +49,7 @@ import { MainLayout } from './main-layout/main-layout';
 import { RegisterComponent } from './register/register';
 import { Cart } from './cart/cart';
 import { Exercise63 } from './exercise63/exercise63';
+import { Exercise50 } from './exercise50/exercise50';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { Exercise63 } from './exercise63/exercise63';
     RegisterComponent,
     MainLayout,
     Cart,
-    Exercise63
+    Exercise63,
+    Exercise50
   ],
   imports: [
     BrowserModule,
