@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+
 
 import { AppRoutingModule, RoutingComponent } from './app-routing-module';
 import { App } from './app';
-import { Home } from './home/home';
 import { About } from './about/about';
 import { Contact } from './contact/contact';
 import { Exercise3 } from './exercise3/exercise3';
@@ -22,7 +21,7 @@ import { Listproduct1 } from './listproduct1/listproduct1';
 import { Listproduct2 } from './listproduct2/listproduct2';
 import { Customer } from './customer/customer';
 import { Listproduct3 } from './listproduct3/listproduct3';
-import { Exercise18Component } from './exercise18/exercise18';
+import { Exercise18 } from './exercise18/exercise18';
 import { Pagenotfound } from './pagenotfound/pagenotfound';
 import { Listcustomer } from './listcustomer/listcustomer';
 import { Customerdetail } from './customerdetail/customerdetail';
@@ -36,34 +35,23 @@ import { ServiceProductImageEventDetail } from './exercise13/service-product-ima
 import { ProductComponent } from './exercise19/product-component/product-component';
 import { ListProductComponent } from './exercise19/list-product-component/list-product-component';
 import { ServiceProductComponent } from './exercise19/service-product-component/service-product-component';
-import { Form } from './form/form';
+import { RegisterForm } from './register-form/register-form';
 import { FakeProductComponent } from './fake-product-component/fake-product-component';
-import { ReactiveForms } from './reactive-forms/reactive-forms';
-import { Books } from './books/books';
-import { BookDetail } from './book-detail/book-detail';
-import { FakeProductVersion2 } from './fake-product-component/fake-product-version-2/fake-product-version-2';
-import { BookNewComponent } from './book-new-component/book-new-component';
-import { Exercise50 } from './exercise50/exercise50';
-import { Ex50BookinfoNewComponent } from './exercise50/ex50-bookinfo-new-component/ex50-bookinfo-new-component';
-import { Ex50BookinfoDetailComponent } from './exercise50/ex50-bookinfo-detail-component/ex50-bookinfo-detail-component';
-import { BookUpdateComponent } from './book-update-component/book-update-component';
-import { BookDeleteComponent } from './book-delete-component/book-delete-component';
+import { BooksComponent } from './books.component/books.component';
+import { Bookdetail } from './bookdetail/bookdetail';
+import { BookNew } from './book-new/book-new';
+import { BookUpdate } from './book-update/book-update';
+import { BookDelete } from './book-delete/book-delete';
 import { Fashion } from './fashion/fashion';
-import { FashionDetailComponent } from './fashion-detail-component/fashion-detail-component';
+import { FashionDetail } from './fashion-detail/fashion-detail';
 import { Login } from './login/login';
-import { Register } from './register/register';
-import { Exercise63 } from './exercise63/exercise63';
-import { Cart } from './exercise63/cart/cart';
-import { Exercise58 } from './exercise58/exercise58';
-import { Ex58Form } from './exercise58/ex58-form/ex58-form';
-import { Ex58Detail } from './exercise58/ex58-detail/ex58-detail';
-import { Ex58Client } from './exercise58/ex58-client/ex58-client';
+import { MainLayout } from './main-layout/main-layout';
+import { RegisterComponent } from './register/register';
 
 @NgModule({
   declarations: [
     App,
     RoutingComponent,
-    Home,
     About,
     Contact,
     Exercise3,
@@ -76,7 +64,7 @@ import { Ex58Client } from './exercise58/ex58-client/ex58-client';
     Listproduct2,
     Customer,
     Listproduct3,
-    Exercise18Component,
+    Exercise18,
     Pagenotfound,
     Listcustomer,
     Customerdetail,
@@ -90,28 +78,18 @@ import { Ex58Client } from './exercise58/ex58-client/ex58-client';
     ProductComponent,
     ListProductComponent,
     ServiceProductComponent,
-    Form,
+    RegisterForm,
     FakeProductComponent,
-    ReactiveForms,
-    Books,
-    BookDetail,
-    FakeProductVersion2,
-    BookNewComponent,
-    Exercise50,
-    Ex50BookinfoNewComponent,
-    Ex50BookinfoDetailComponent,
-    BookUpdateComponent,
-    BookDeleteComponent,
+    BooksComponent,
+    Bookdetail,
+    BookNew,
+    BookUpdate,
+    BookDelete,
     Fashion,
-    FashionDetailComponent,
+    FashionDetail,
     Login,
-    Register,
-    Exercise63,
-    Cart,
-    Exercise58,
-    Ex58Form,
-    Ex58Detail,
-    Ex58Client
+    RegisterComponent,
+    MainLayout
   ],
   imports: [
     BrowserModule,
@@ -120,8 +98,6 @@ import { Ex58Client } from './exercise58/ex58-client/ex58-client';
     AppRoutingModule,
     Mybinding,
     HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule,
     ReactiveFormsModule
   ],
   providers: [

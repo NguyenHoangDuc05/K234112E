@@ -1,0 +1,45 @@
+<div id="container">  
+  <ul>
+    <li> <a href="#">HOME</a></li>
+    <li> <a href="#">PRODUCTS</a>
+      <ul>
+          <li> <a routerLink="/sanpham1">Product 1</a></li>
+          <li> <a routerLink="/sanpham2">Product 2</a></li>
+          <li> <a routerLink="/sanpham3">Product 3</a></li>
+      </ul>
+    </li>
+    <li> <a href="#">CUSTOMER</a>
+      <ul>
+          <li> <a routerLink="/list-customer">CUSTOMER LIST</a></li>
+          <li> <a routerLink="/list-customer-service">CUSTOMER LIST - SERVICE</a></li>
+          <li> <a routerLink="/list-customer-http-service">CUSTOMER LIST - HTTP SERVICE</a></li>
+      </ul>
+    </li>
+   <li> <a href="#">FORM</a>
+      <ul>
+          <li> <a routerLink="/register">Form</a></li>
+          <li> <a routerLink="/reactive-form"> Reactive form </a></li>
+      </ul>
+    </li>
+    <li> <a href="#">External API </a>
+      <ul>
+          <li> <a routerLink="/fake-product-component"> Exercise 26 </a></li>
+          <li> <a> Exercise 27 </a></li>
+          <li> <a> Exercise 28 </a></li>
+      </ul>
+    </li>
+    <li> <a href="#">Internal API </a>
+      <ul>
+          <li> <a routerLink="/ex39"> Exercise 39 </a></li>
+          <li> <a routerLink="/ex41"> Exercise 41 </a></li>
+          <li> <a routerLink="/ex43"> Exercise 43 </a></li>
+          <li> <a routerLink="/ex45"> Exercise 45 </a></li>
+          <li> <a routerLink="/ex47"> Exercise 47 </a></li>
+      </ul>
+    </li>
+    <li> <a routerLink="/ex53">MongoDB - REST API</a></li>
+    <li> <a routerLink="/gioithieu">ABOUT</a></li>
+    <li> <a (click)="logout()" style="cursor: pointer;">LOGOUT</a></li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

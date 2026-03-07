@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, retry, throwError } from 'rxjs';
 import { IFakeProduct } from '../classes/iFakeProduct';
-import { catchError, map, Observable, retry, throwError } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FakeProductService {
-  private _url: string = "/exchange/products";
-  constructor(private _http: HttpClient) { }
-  getFakeProductData():Observable<any> {
-    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-    const requestOptions:Object={
-    headers:headers,
-    responseType:"text"
-  }
-    return this._http.get<any>(this._url,requestOptions).pipe(
-      map(res=>JSON.parse(res) as Array<IFakeProduct>),
+  private readonly apiUrl: string = '/exchange'; // Đổi thành /exchange
+  
+  constructor(private http: HttpClient) {}
+  
+  getFakeProductData(): Observable<IFakeProduct[]> {
+    return this.http.get<IFakeProduct[]>(this.apiUrl).pipe(
       retry(3),
-      catchError(this.handleError))
+      catchError(this.handleError)
+    );
   }
-    handleError(error:HttpErrorResponse){
-      return throwError(()=>new Error(error.message))
-    }
+  
+  private handleError(error: HttpErrorResponse) {
+    console.error('API Error:', error);
+    return throwError(() => new Error(error.message));
+  }
 }

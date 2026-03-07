@@ -1,0 +1,86 @@
+.container-fluid {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+h3 {
+  font-weight: 700;
+  color: #0d6efd;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+.ng-invalid.ng-touched {
+  border: 1px solid #ced4da !important;
+  box-shadow: none !important;
+}
+
+.ng-valid.ng-touched {
+  border: 2px solid #20c997;
+}
+
+.text-danger {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  border: none;
+}
+
+.btn-primary:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+}
+
+.mb-3 label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #343a40;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: #0d6efd;
+}
+
+p {
+  margin-top: 20px;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #495057;
+}
+.form-select.is-invalid {
+  border-color: #dc3545;
+  background-image: none;
+}
+
+.form-select.is-valid {
+  border-color: #20c997;
+  background-image: none;
+}

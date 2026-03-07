@@ -1,21 +1,31 @@
-<p>fashion works!</p>
-{{ errMessage }}
-<table border="1">
-  <tr style="text-align: center;">
-    <td>Id</td>
-    <td>Fashion Subject</td>
-    <td>Fashion Detail</td>
-    <td>Image</td>
-  </tr>
-  <tbody>
-    <tr *ngFor="let fashion of fashions">
-      <td>{{ fashion._id }}</td>
-      <td>{{ fashion.fashion_subject }}</td>
-      <td>{{ fashion.fashion_detail }}</td>
-      <td>
-        <img src="{{ get_image(fashion.fashion_image) }}" width="100px" height="100px"
-        (click)="show_detail(fashion._id)" style="cursor:pointer;" />
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="fashion-container">
+  <h2 class="title">Fashion List</h2>
+  <div *ngIf="errMessage" class="error">{{ errMessage }}</div>
+  <table class="fashion-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Style</th>
+        <th>Title</th>
+        <th>Detail</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fashion of fashions">
+        <td>{{ fashion._id }}</td>
+        <td class="style">{{ fashion.style }}</td>
+        <td class="title">{{ fashion.fashion_title }}</td>
+        <td class="detail">{{ fashion.fashion_details }}</td>
+        <td>
+          <img
+            [src]="get_image(fashion.thumbnail)"
+            alt="Fashion"
+            class="fashion-img"
+            (click)="viewDetail(fashion._id)"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

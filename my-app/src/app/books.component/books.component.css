@@ -1,0 +1,52 @@
+.books-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.books-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  padding: 10px;
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #4CAF50;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+td img {
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+td img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-color: #4CAF50;
+}

@@ -1,0 +1,28 @@
+<div class="detail-container" *ngIf="fashion">
+  <h2 class="detail-title">Fashion Detail</h2>
+  <div class="detail-card">
+    <div class="detail-row">
+      <strong>ID:</strong> {{ fashion._id }}
+    </div>
+    <div class="detail-row">
+      <strong>Style:</strong> {{ fashion.style }}
+    </div>
+    <div class="detail-row">
+      <strong>Title:</strong> {{ fashion.fashion_title }}
+    </div>
+    <div class="detail-row">
+      <strong>Details:</strong> {{ fashion.fashion_details }}
+    </div>
+    <div class="detail-row">
+      <strong>Image:</strong>
+    </div>
+    <img
+      [src]="get_image(fashion.thumbnail)"
+      alt="Fashion Detail"
+      class="detail-img"
+    />
+  </div>
+  <button class="back-btn" (click)="goBack()">Back to List</button>
+</div>
+
+<div *ngIf="errMessage" class="error">{{ errMessage }}</div>

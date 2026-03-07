@@ -1,0 +1,38 @@
+[
+  {
+    "context": ["/exchange"],
+    "target": "https://fakestoreapi.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/exchange": "/products" }
+  },
+  {
+    "context": ["/fashions"],
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context": ["/books"],
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context": ["/static"],
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context": ["/upload"],
+    "target": "http://localhost:3001",
+    "secure": false,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  } 
+]

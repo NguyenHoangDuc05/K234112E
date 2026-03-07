@@ -1,6 +1,6 @@
-import { ChangeDetectorRef,Component } from '@angular/core';
-import { FashionAPIService } from '../myservices/fashion-apiservice';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FashionAPIService } from '../myservices/fashion-api.service';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-fashion',
@@ -8,28 +8,34 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './fashion.html',
   styleUrl: './fashion.css',
 })
-export class Fashion {
+export class Fashion implements OnInit {
   fashions: any;
   errMessage: string = '';
-  constructor(private _service: FashionAPIService, private router: Router,private ActivateRouter: ActivatedRoute,private cdr: ChangeDetectorRef){
+
+  constructor(
+    private _service: FashionAPIService,
+    private cdr: ChangeDetectorRef,
+    private router: Router                           
+  ) {}
+
+  ngOnInit() {
     this._service.getFashions().subscribe({
-      next: (data) => {
+      next: (data: any) => {
         this.fashions = data;
         this.cdr.detectChanges();
       },
-      error: (err) => {
-        this.errMessage = err.message;
-        this.cdr.detectChanges();
-      },
+      error: (err: any) => { this.errMessage = err; }
     });
   }
-  get_image(base64: string) {
-    if (base64 == null) return '';
-    let prefix = 'data:image/jpeg;base64,';
-    if (base64.startsWith(prefix)) return base64;
-    return prefix + base64;
+  get_image(base64:string)
+  {
+    if(base64==null)return""
+    let prefix="data:image/jpeg;base64,";
+    if (base64.startsWith(prefix))
+      return base64
+    return prefix+base64
   }
-  show_detail(id: any) {
-    this.router.navigate(['ex54', id]);
+  viewDetail(id: string) {
+    this.router.navigate(['/fashions', id]);
   }
 }

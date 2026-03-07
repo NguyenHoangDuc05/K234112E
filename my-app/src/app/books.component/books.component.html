@@ -1,0 +1,31 @@
+<p>books works!</p>
+{{errMessage}}
+<a routerLink="../ex43">New Book</a>
+<table border="1">
+    <tr>
+        <td>BookId</td>
+        <td>BookName</td>
+        <td>Price</td>
+        <td>Image</td>
+        <td>Action</td>
+    </tr>
+    <tbody>
+        <tr *ngFor="let book of books">
+            <td>{{book.BookId}}</td>
+            <td>{{book.BookName}}</td>
+            <td>{{book.Price}} </td>
+            <td>
+                <img src="http://localhost:3000/static/book_images/{{ book.Image }}" width="100" height="100"
+                style="cursor: pointer;"
+                (click)="show_detail(book.BookId)"
+                />
+            </td>
+            <td>
+                <a style="cursor: pointer;" 
+                (click)="show_update(book.BookId)">Edit</a> | 
+                <a style="cursor: pointer;" 
+                (click)="request_delete(book.BookId)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

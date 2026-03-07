@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <form #registerForm="ngForm">
+    <h3 class="text-center">Đăng ký khóa học</h3>
+
+    <!-- Tên -->
+    <div class="mb-3">
+      <label for="name">Tên:</label>
+      <input type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        placeholder="Nhập tên"
+        [(ngModel)]="studentModel.name"
+        required
+        #name="ngModel">
+
+      <div class="text-danger" *ngIf="name.invalid && name.touched">
+        Tên không được để trống
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label>Email:</label>
+      <input type="email"
+        class="form-control"
+        name="email"
+        [(ngModel)]="studentModel.email"
+        required
+        email
+        #email="ngModel">
+
+      <div class="text-danger" *ngIf="email.invalid && email.touched">
+        Email không hợp lệ
+      </div>
+    </div>
+
+    <!-- Điện thoại -->
+    <div class="mb-3">
+      <label>Điện thoại:</label>
+      <input type="text"
+        class="form-control"
+        name="phone"
+        [(ngModel)]="studentModel.phone"
+        required
+        #phone="ngModel">
+
+      <div class="text-danger" *ngIf="phone.invalid && phone.touched">
+        Vui lòng nhập số điện thoại
+      </div>
+    </div>
+
+    <!-- Chọn khóa học -->
+<div class="mb-3">
+  <label for="course">Chọn khóa học:</label>
+
+  <select class="form-select"
+    id="course"
+    name="course"
+    [(ngModel)]="studentModel.course"
+    #course="ngModel"
+    [class.is-invalid]="errFlag && course.touched"
+    (blur)="validateCourse(course.value)"
+    (change)="validateCourse(course.value)">
+
+    <option value="none">----------</option>
+    <option *ngFor="let c of courses">{{ c }}</option>
+  </select>
+
+  <small class="text-danger"
+    [class.d-none]="!errFlag || course.untouched">
+    Vui lòng chọn khóa học
+  </small>
+</div>
+
+    <!-- Ca học -->
+    <div class="mb-3">
+      <label>Chọn ca học:</label><br>
+      <input type="radio" name="time" value="sang"
+        [(ngModel)]="studentModel.time"
+        required> Sáng
+
+      <input type="radio" name="time" value="toi"
+        [(ngModel)]="studentModel.time"
+        required> Tối
+    </div>
+
+    <!-- Điều khoản -->
+    <div class="mb-3">
+      <input type="checkbox"
+        name="agree"
+        ngModel
+        required
+        #agree="ngModel">
+      Đồng ý với điều khoản
+
+      <div class="text-danger" *ngIf="agree.invalid && agree.touched">
+        Bạn phải đồng ý điều khoản
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit"
+      class="btn btn-primary"
+      [disabled]="registerForm.invalid">
+      Submit
+    </button>
+  </form>
+
+  <!-- Hiển thị dữ liệu form -->
+  <p>{{ registerForm.value | json }}</p>
+</div>

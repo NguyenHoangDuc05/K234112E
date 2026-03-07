@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FakeProductService } from '../myservices/fake-product-service';
 
 @Component({
@@ -7,15 +7,22 @@ import { FakeProductService } from '../myservices/fake-product-service';
   templateUrl: './fake-product-component.html',
   styleUrl: './fake-product-component.css',
 })
-export class FakeProductComponent {
-  data:any
-  errMessage:string=''
-  constructor(_service:FakeProductService){
-    _service.getFakeProductData().subscribe({
-      next:(data)=>{ this.data=data},
-      error:(err)=>{
-        this.errMessage=err
-      }
-    })
+export class FakeProductComponent implements OnInit {
+  data: any;
+  errMessage: string = '';
+
+  constructor(
+    private _service: FakeProductService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this._service.getFakeProductData().subscribe({
+      next: (data) => {
+        this.data = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => { this.errMessage = err; }
+    });
   }
 }
