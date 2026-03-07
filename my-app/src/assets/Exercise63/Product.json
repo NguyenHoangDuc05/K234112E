@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Diamond Promise Ring 14 ct Round Baguette 10K White Gold",
+    "price": 245,
+    "image": "assets/Exercise63/Diamond Promise Ring 14 ct w RoundBaguette 10K White Gold.jpg",
+    "description": "Elegant promise ring featuring round baguette diamonds set in polished 10K white gold. A refined piece perfect for meaningful moments.",
+    "category": "Rings"
+  },
+  {
+    "name": "Diamond Promise Ring 15 ct Round-cut Sterling Silver",
+    "price": 279,
+    "image": "assets/Exercise63/Diamond Promise Ring 15 ct w Round-cut Sterling Silver.jpg",
+    "description": "A delicate sterling silver ring with sparkling round-cut diamonds, designed to symbolize love and commitment.",
+    "category": "Rings"
+  },
+  {
+    "name": "Diamond Promise Ring 16 ct Black & White Sterling Silver",
+    "price": 315,
+    "image": "assets/Exercise63/Diamond Promise Ring 16 ct w BlackWhite Sterling Silver.jpg",
+    "description": "Modern sterling silver ring featuring a stylish combination of black and white diamonds for a bold and elegant look.",
+    "category": "Rings"
+  },
+  {
+    "name": "Diamond Promise Ring 16 ct Round-cut 10K White Gold",
+    "price": 338,
+    "image": "assets/Exercise63/Diamond Promise Ring 16 ct w Round-cut 10K White Gold.jpg",
+    "description": "Classic round-cut diamond ring crafted in 10K white gold, offering timeless elegance and brilliant sparkle.",
+    "category": "Rings"
+  },
+  {
+    "name": "Diamond Promise Ring 18 ct Round-cut Sterling Silver",
+    "price": 367,
+    "image": "assets/Exercise63/Diamond Promise Ring 18 ct w Round-cut Sterling Silver Ring.jpg",
+    "description": "Sophisticated sterling silver promise ring with bright round-cut diamonds, perfect for everyday elegance.",
+    "category": "Rings"
+  },
+  {
+    "name": "Diamond Promise Ring 1.55 ct Round-cut Sterling Silver",
+    "price": 429,
+    "image": "assets/Exercise63/Diamond Promise Ring 155 ct w Round-cut Sterling Silver.jpg",
+    "description": "Premium sterling silver ring featuring a stunning round-cut diamond design that adds brilliance and luxury.",
+    "category": "Rings"
+  }
+]

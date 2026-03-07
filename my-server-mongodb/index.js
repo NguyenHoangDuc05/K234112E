@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 app.use(morgan("combined"));
 app.use(bodyParser.json());
@@ -15,12 +16,18 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
+app.use(session({
+  secret: "Shh, its a secret!",
+  resave: false,
+  saveUninitialized: false
+}));
 
 const client = new MongoClient("mongodb://127.0.0.1:27017");
 client.connect();
 const database = client.db("FashionData");
 const fashionCollection = database.collection("Fashion");
 const usersCollection = database.collection("users");
+const productCollection = database.collection("Product");
 
 app.listen(port, () => {
   console.log(`My Server listening on port ${port}`);
@@ -169,3 +176,87 @@ app.get("/clear-cookie", cors(corsOptions), (req, res) => {
   res.clearCookie("account")
   res.send("[account] Cookie is removed")
 })
+
+// Session contact demo
+app.get("/contact", cors(corsOptions), (req, res) => {
+  if (req.session.visited != null) {
+    req.session.visited++
+    res.send("You visited this page " + req.session.visited + " times")
+  } else {
+    req.session.visited = 1
+    res.send("Welcome to this page for the first time!")
+  }
+})
+
+// ===== Exercise 63: Products & Session Cart =====
+
+// POST seed sample products
+app.post("/insert-sample-products", cors(corsOptions), async (req, res) => {
+  try {
+    const sampleProducts = [
+      { name: "Diamond Promise Ring 14ct Round Baguette 10K White Gold", price: 245, image: "assets/Exercise63/Diamond Promise Ring 14 ct tw RoundBaguette 10K White Gold.jpg", description: "Elegant promise ring with round baguette diamonds in 10K white gold.", category: "Rings" },
+      { name: "Diamond Promise Ring 15ct Round-cut Sterling Silver", price: 279, image: "assets/Exercise63/Diamond Promise Ring 15 ct tw Round-cut Sterling Silver.jpg", description: "Delicate sterling silver ring with sparkling round-cut diamonds.", category: "Rings" },
+      { name: "Diamond Promise Ring 1.55ct Round-cut Sterling Silver", price: 299, image: "assets/Exercise63/Diamond Promise Ring 155 ct tw Round-cut Sterling Silver.jpg", description: "Premium sterling silver ring with stunning round-cut diamond design.", category: "Rings" },
+      { name: "Diamond Promise Ring 16ct Black & White Sterling Silver", price: 315, image: "assets/Exercise63/Diamond Promise Ring 16 ct tw BlackWhite Sterling Silver.jpg", description: "Modern ring featuring black and white diamonds for a bold look.", category: "Rings" },
+      { name: "Diamond Promise Ring 16ct Round-cut 10K White Gold", price: 338, image: "assets/Exercise63/Diamond Promise Ring 16 ct tw Round-cut 10K White Gold.jpg", description: "Classic round-cut diamond ring crafted in 10K white gold.", category: "Rings" },
+      { name: "Diamond Promise Ring 18ct Round-cut Sterling Silver", price: 367, image: "assets/Exercise63/Diamond Promise Ring 18 ct tw Round-cut Sterling Silver Ring.jpg", description: "Sophisticated sterling silver promise ring with round-cut diamonds.", category: "Rings" }
+    ];
+    await productCollection.deleteMany({});
+    await productCollection.insertMany(sampleProducts);
+    res.json({ success: true, message: "Sample products inserted", count: sampleProducts.length });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error inserting products" });
+  }
+});
+
+// GET all products
+app.get("/products", cors(corsOptions), async (req, res) => {
+  try {
+    const result = await productCollection.find({}).toArray();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching products" });
+  }
+});
+
+// POST add product to session cart
+app.post("/cart/add", cors(corsOptions), (req, res) => {
+  const product = req.body; // { _id, name, price, image, description, category }
+  if (!req.session.cart) req.session.cart = [];
+  const existing = req.session.cart.find(p => String(p._id) === String(product._id));
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    req.session.cart.push({ ...product, quantity: 1 });
+  }
+  res.json({ success: true, cart: req.session.cart });
+});
+
+// GET session cart
+app.get("/cart", cors(corsOptions), (req, res) => {
+  res.json({ cart: req.session.cart || [] });
+});
+
+// POST update cart (update quantities and remove checked items)
+app.post("/cart/update", cors(corsOptions), (req, res) => {
+  const { items } = req.body; // [{ _id, quantity, remove }]
+  if (!req.session.cart) req.session.cart = [];
+  // Filter out removed items, then update quantities
+  req.session.cart = req.session.cart
+    .filter(p => {
+      const incoming = items.find(i => String(i._id) === String(p._id));
+      return incoming ? !incoming.remove : true;
+    })
+    .map(p => {
+      const incoming = items.find(i => String(i._id) === String(p._id));
+      if (incoming && incoming.quantity > 0) p.quantity = incoming.quantity;
+      return p;
+    });
+  res.json({ success: true, cart: req.session.cart });
+});
+
+// DELETE clear cart
+app.delete("/cart/clear", cors(corsOptions), (req, res) => {
+  req.session.cart = [];
+  res.json({ success: true });
+});

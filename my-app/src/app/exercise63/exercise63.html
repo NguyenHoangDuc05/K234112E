@@ -1,0 +1,33 @@
+<div class="ex63-wrapper">
+    <!-- Toast notification -->
+    <div class="toast-msg" *ngIf="toast">{{ toast }}</div>
+
+    <!-- Header bar -->
+    <div class="ex63-header">
+        <h2>💎 Diamond Ring Collection</h2>
+        <button class="btn-cart" (click)="goToCart()">
+            🛒 View Cart <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+        </button>
+    </div>
+
+    <!-- Product grid -->
+    <div class="product-grid">
+        <div class="product-card" *ngFor="let p of products">
+            <div class="card-img-wrap">
+                <img [src]="p.image" [alt]="p.name" />
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{ p.name }}</h3>
+                <p class="card-desc">{{ p.description }}</p>
+                <div class="card-footer">
+                    <span class="price">${{ p.price }}</span>
+                    <button class="btn-add" (click)="addToCart(p)">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="products.length === 0" class="empty-msg">
+        Loading products... (Make sure the server is running and MongoDB has data in the "Product" collection)
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -47,6 +47,8 @@ import { FashionDetail } from './fashion-detail/fashion-detail';
 import { Login } from './login/login';
 import { MainLayout } from './main-layout/main-layout';
 import { RegisterComponent } from './register/register';
+import { Cart } from './cart/cart';
+import { Exercise63 } from './exercise63/exercise63';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { RegisterComponent } from './register/register';
     FashionDetail,
     Login,
     RegisterComponent,
-    MainLayout
+    MainLayout,
+    Cart,
+    Exercise63
   ],
   imports: [
     BrowserModule,

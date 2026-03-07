@@ -1,0 +1,62 @@
+<div class="cart-wrapper">
+    <div class="cart-header">
+        <h2>🛒 Your Shopping Cart</h2>
+    </div>
+
+    <div *ngIf="message" class="cart-message">{{ message }}</div>
+
+    <div *ngIf="cart.length === 0 && !message" class="cart-empty">
+        <p>Your cart is empty.</p>
+        <button class="btn-continue" (click)="continueShopping()">Continue Shopping</button>
+    </div>
+
+    <div *ngIf="cart.length > 0">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Remove</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cart" [class.row-removed]="item.remove">
+                    <td>
+                        <input type="checkbox" [(ngModel)]="item.remove" />
+                    </td>
+                    <td>
+                        <img [src]="item.image" [alt]="item.name" class="cart-img" />
+                    </td>
+                    <td>
+                        <span class="item-name">{{ item.name }}</span><br />
+                        <small class="item-cat">{{ item.category }}</small>
+                    </td>
+                    <td>${{ item.price }}</td>
+                    <td>
+                        <input type="number" [(ngModel)]="item.quantity" min="1" class="qty-input"
+                            [disabled]="item.remove" />
+                    </td>
+                    <td>
+                        <span *ngIf="!item.remove">${{ (item.price * item.quantity) | number:'1.2-2' }}</span>
+                        <span *ngIf="item.remove" class="removed-label">Removed</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="total-label">Order Total:</td>
+                    <td class="total-amount">${{ total | number:'1.2-2' }}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="cart-actions">
+            <button class="btn-continue" (click)="continueShopping()">Continue Shopping</button>
+            <button class="btn-update" (click)="updateCart()"> Update Shopping Cart</button>
+            <button class="btn-checkout" (click)="checkout()"> Confirm & Place Order</button>
+        </div>
+    </div>
+</div>
